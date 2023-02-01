@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Student List</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col col-lg-6 border p-4 m-5 border-2 mx-auto">
+          <!-- form -->
+          <form id="std-form">
+            <!-- Form Group -->
+            <div class="form-group my-2 d-flex flex-column">
+              <!-- Student Name -->
+              <div>
+                <label>Student Name</label>
+                <input
+                  type="text"
+                  placeholder="Enter Student Name"
+                  class="form-control"
+                  id="studentName"
+                />
+              </div>
+
+              <!-- Father Name  -->
+              <div class="my-3">
+                <label>Father's Name</label>
+                <input
+                  type="text"
+                  placeholder="Enter Father's Name"
+                  class="form-control"
+                  id="fatherName"
+                />
+              </div>
+
+              <!-- classs -->
+              <div>
+                <label>Class</label>
+                <input
+                  type="text"
+                  placeholder="Enter Class"
+                  class="form-control"
+                  id="class"
+                />
+              </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="form-group">
+              <input
+                type="submit"
+                value="Submit"
+                class="form-control bg-primary text-white"
+                id="submit"
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="container-fluid mt-5">
+      <!-- TAble -->
+      <table class="table">
+        <!-- Table Head -->
+        <thead>
+          <tr class="border border-4">
+            <th scope="col">#</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">Father's Name</th>
+            <th scope="col">Class</th>
+          </tr>
+        </thead>
+
+        <!-- Table Body -->
+        <tbody id="stdList"></tbody>
+      </table>
+    </div>
+
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <!-- Student Name -->
+              <div>
+                <label for="edit-Std-Name" class="col-form-label"
+                  >Student Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="edit-Std-Name"
+                  placeholder="Edit Student Name"
+                />
+              </div>
+              <!-- Father Name -->
+              <div class="my-2">
+                <label for="edit-father-Name" class="col-form-label"
+                  >Father's Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="edit-father-Name"
+                  placeholder="Edit Father's Name"
+                />
+              </div>
+              <!--Class -->
+              <div>
+                <label for="edit-class" class="col-form-label">Class</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="edit-class"
+                  placeholder="Edit Class"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              Discard
+            </button>
+            <button type="button" class="btn btn-success" id="save-changes">
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
