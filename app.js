@@ -18,16 +18,18 @@ class UI {
         <td>${std.fName}</td>
         <td>${std.sClass}</td>
         <td><a href="#"  class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Edit</a></td>
-        <td><a href="#" class="remove">Remove</a></td>
+        <td><a href="#" class="delete">Remove</a></td>
         `;
     list.appendChild(row);
   }
 
-  // Delete STudent 
+  // Delete STudent
   deleteStd(target) {
-  if(target.className === 'remove'){
-    target.parentElement.parentElement.remove()
-  }
+    if (target.className === "delete") {
+      target.parentElement.parentElement.remove();
+      // Remove From LS
+      Store.removeStudent(target.parentElement.previousElementSibling);
+    }
   }
 
   clearFields() {
@@ -65,64 +67,61 @@ document.getElementById("std-form").addEventListener("submit", (e) => {
   e.preventDefault();
 });
 
-
 // Local Storage Class
-class Store{
-    static getStudents(){
-        let students;
-        if(localStorage.getItem('students') === null){
-            students = []
-        }else{
-            students = JSON.parse(localStorage.getItem('students'))
-        }
+class Store {
 
-        return students;
+  // GetStudents data
+  static getStudents() {
+    let students;
+    if (localStorage.getItem("students") === null) {
+      students = [];
+    } else {
+      students = JSON.parse(localStorage.getItem("students"));
     }
 
-    static dispalyStudents(){
-        const students = Store.getStudents();
+    return students;
+  }
 
-        students.forEach(function(student){
-            const ui = new UI;
-            // Add Book to list
-            ui.addStudentToList(student);
-        });
-    }
+  //Add Students Data
+  static addStudent(student) {
+    const students = Store.getStudents();
 
-    static addStudent(student){
-        const students = Store.getStudents();
+    students.push(student);
 
-        students.push(student)
+    localStorage.setItem("students", JSON.stringify(students));
+  }
 
-        localStorage.setItem('students', JSON.stringify(students));
-    }
+  //Display Students Data
+  static dispalyStudents() {
+    const students = Store.getStudents();
 
-    static removeStudent(){
-        const students = Store.getStudents();
+    students.forEach(function (student) {
+      const ui = new UI();
+      // Add Book to list
+      ui.addStudentToList(student);
+    });
+  }
 
-        students.forEach(function (index){
-            
-                students.splice(index,1)
-            
-        });
+  // Remove Students Data
+  static removeStudent() {
+    const students = Store.getStudents();
 
-        localStorage.setItem('students', JSON.stringify(students));
-    }
+    students.forEach((index) => {
+      students.splice(index,1);
+    });
+
+    localStorage.setItem("students", JSON.stringify(students));
+  }
 }
 
-// DOM Load Event 
-document.addEventListener('DOMContentLoaded',Store.dispalyStudents)
+// DOM Load Event
+document.addEventListener("DOMContentLoaded", Store.dispalyStudents);
 
-
-//Event Listener For Delete Book
+//Event Listener For Delete Student
 document.getElementById("stdList").addEventListener("click", function (e) {
-    // Instantiate UI
-    const ui = new UI();
- 
-    // Delete Book
-    ui.deleteStd(e.target);
-  
-    // Remove From LS
-    Store.removeStudent(e.target.parentElement.previousElementSibling.textContent)
-  });
-  
+  // Instantiate UI
+  const ui = new UI();
+
+  // Delete Student
+  ui.deleteStd(e.target);
+});
